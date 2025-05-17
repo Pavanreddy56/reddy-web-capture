@@ -1,7 +1,7 @@
 
-# C P REDDY Website AWS EC2 Deployment Guide
+# C.P REDDY IT Solutions Website AWS EC2 Deployment Guide
 
-This guide explains how to deploy the C P REDDY IT company website on an AWS EC2 instance with RDS database connectivity.
+This guide explains how to deploy the C.P REDDY IT Solutions website on an AWS EC2 instance with RDS database connectivity using Apache and PHP.
 
 ## Prerequisites
 
@@ -53,26 +53,70 @@ chmod +x deploy.sh
 
 1. Open a web browser and navigate to your EC2 instance's public IP address
 2. The website should be visible and the contact form should be functional
-3. Check the PM2 process to ensure the server is running:
-   ```bash
-   pm2 status
-   ```
+3. Test the form to ensure data is being stored in the RDS database
 
-### 7. View logs (if needed)
+### 7. Setting up a Domain Name (Optional)
+
+If you have a domain name for your website:
+
+1. Create an Elastic IP and associate it with your EC2 instance
+2. Update your domain's DNS records to point to your EC2 instance's IP address
+3. Configure Apache for your domain name:
 
 ```bash
-pm2 logs cpreddy-website
+sudo nano /etc/apache2/sites-available/cpreddy.conf
+```
+
+Add:
+
+```
+<VirtualHost *:80>
+    ServerName yourdomain.com
+    ServerAlias www.yourdomain.com
+    DocumentRoot /var/www/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Then enable the site:
+
+```bash
+sudo a2ensite cpreddy.conf
+sudo systemctl reload apache2
+```
+
+### 8. Setting up HTTPS with Let's Encrypt (Optional)
+
+To secure your website with HTTPS:
+
+```bash
+sudo apt-get update
+sudo apt-get install certbot python3-certbot-apache
+sudo certbot --apache -d yourdomain.com -d www.yourdomain.com
 ```
 
 ## Troubleshooting
 
-- If the website doesn't load, check if your security group allows traffic on port 80
-- If form submissions fail, verify RDS connection settings and ensure the EC2 security group has access to the RDS instance
-- Check server logs with `pm2 logs cpreddy-website`
+- If the website doesn't load, check Apache status with `sudo systemctl status apache2`
+- If form submissions fail, verify RDS connection settings in `db-config.php`
+- Check Apache error logs: `sudo tail -f /var/log/apache2/error.log`
+- Check PHP error logs: `sudo tail -f /var/log/php/error.log`
 
-## Important Commands
+## Database Management
 
-- Restart the server: `pm2 restart cpreddy-website`
-- Stop the server: `pm2 stop cpreddy-website`
-- Start the server: `pm2 start cpreddy-website`
-- View logs: `pm2 logs cpreddy-website`
+To connect to your RDS database and manage data:
+
+```bash
+mysql -h your-rds-endpoint.amazonaws.com -u your_username -p'your_password' cpreddy_db
+```
+
+Common database commands:
+
+```sql
+-- View all contacts
+SELECT * FROM contacts;
+
+-- Export contacts to CSV
+SELECT * FROM contacts INTO OUTFILE '/tmp/contacts.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+```
