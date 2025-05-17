@@ -54,7 +54,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Redirect for regular form submission
         if($response['status'] == 'success') {
-            header('Location: contact.html?status=success');
+            // Redirect to thank-you page instead of simple message
+            header('Location: thank-you.html');
         } else {
             header('Location: contact.html?status=error&msg=' . urlencode($response['message']));
         }

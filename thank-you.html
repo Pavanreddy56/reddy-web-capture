@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - C.P REDDY IT Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .thank-you-container {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0 0 0 #4bb71b;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+            position: relative;
+            margin: 0 auto 30px;
+            background: #4bb71b;
+        }
+        
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #4bb71b;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0 0 0 100px #4bb71b;
+            }
+        }
+        
+        .thank-you-title {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: fadeIn 1.2s ease-in;
+        }
+        
+        .return-home {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        .return-home:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            background: rgba(0, 98, 204, 0.05);
+            border-radius: 50%;
+            animation: animate 25s linear infinite;
+        }
+        
+        .animated-bg span:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+        
+        .animated-bg span:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            left: 70%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+        
+        .animated-bg span:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 25s;
+        }
+        
+        .animated-bg span:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 10%;
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>C.P REDDY</h1>
+                <p class="tagline">IT Solutions</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="thank-you-container">
+                <div class="animated-bg">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                
+                <h2 class="thank-you-title">Thank You!</h2>
+                <p class="thank-you-message">
+                    Your message has been successfully sent. Our team will review your inquiry and get back to you shortly. We appreciate your interest in C.P REDDY IT Solutions.
+                </p>
+                <a href="index.html" class="return-home">Return to Homepage</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C.P REDDY IT Solutions</h3>
+                    <p>Your trusted partner for innovative IT solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@cpreddy.com</p>
+                    <p>Phone: +1 123-456-7890</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> C.P REDDY IT Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
